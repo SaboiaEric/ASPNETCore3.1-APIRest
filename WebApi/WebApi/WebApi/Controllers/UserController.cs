@@ -51,7 +51,7 @@ namespace WebApi.Controllers
             {
                 _logger.LogError(ex, "Requested throw unhandled error {@error}", ex.Message);
 
-                return StatusCode(500, String.Join(" ", ex.Message));
+                return StatusCode(500, new[] { ex.Message });
             }
         }
     }
