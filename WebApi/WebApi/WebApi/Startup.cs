@@ -32,7 +32,9 @@ namespace WebApi
                 options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                 options.JsonSerializerOptions.IgnoreNullValues = true;
                 options.JsonSerializerOptions.WriteIndented = true;
-            }); ;
+            });
+
+            services.AddMemoryCache();
 
             services.AddSwaggerGen(c =>
             {
