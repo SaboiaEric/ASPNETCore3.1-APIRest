@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
 
@@ -13,9 +14,12 @@ namespace WebApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+            .ConfigureWebHostDefaults(webBuilder =>
+                webBuilder.ConfigureAppConfiguration(config =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    var settings = config.Build();
+                    var connection = settings.GetConnectionString("AppConfigurationAzure");
+                    config.AddAzureAppConfiguration(connection);
+            }).UseStartup<Startup>());
     }
 }
