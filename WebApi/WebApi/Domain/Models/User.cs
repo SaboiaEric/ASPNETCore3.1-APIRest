@@ -4,7 +4,7 @@ namespace Domain.Models
 {
     public class User
     {
-        public User(Guid id, string name, string email, bool isEnabled)
+        public User(Guid id, string name = "", string email = "", bool isEnabled = false)
         {
             Id = id;
             Name = name;
@@ -17,7 +17,7 @@ namespace Domain.Models
         public string Email { get; private set; }
         public bool IsEnabled { get; private set; }
 
-        public void DisableUser() => IsEnabled = false;
+        public void UpdateUserStatus(bool status) => IsEnabled = status;
 
         public bool IsValidUser()
         {
